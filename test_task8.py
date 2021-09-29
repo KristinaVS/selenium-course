@@ -13,7 +13,7 @@ def driver(request):
 def test_task8(driver):
     driver.get("http://localhost:801/litecart")
     driver.maximize_window()
-    product_list = driver.find_elements_by_css_selector(".product.column.shadow.hover-light")
+    product_list = driver.find_elements_by_css_selector("div.content .products li")
     for product in product_list:
         sticker = product.find_elements_by_css_selector(".sticker")
         count = len(sticker)

@@ -156,7 +156,7 @@ def test_task10_3(driver_ie):
     assert sale_tag == "strong", "Акционная цена на странице продукта не жирная! (Имеет неверный тэг)"
     r, g, b, a = ast.literal_eval(sale_color.strip("rgba"))
     assert (g == 0) and (b == 0), "Неверный цвет акционной цены на странице!"
-    assert product_price_size.split('px')[0] < product_sale_size.split('px')[0], \
+    assert float(product_price_size.split('px')[0]) < float(product_sale_size.split('px')[0]), \
         "Акционная цена в карточке меньше, чем обычная!"
-    assert price_size.split('px')[0] < sale_size.split('px')[0], \
+    assert float(price_size.split('px')[0]) < float(sale_size.split('px')[0]), \
         "Акционная цена на странице продукта меньше, чем обычная!"

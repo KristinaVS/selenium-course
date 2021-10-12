@@ -8,7 +8,7 @@ from selenium.webdriver.support.select import Select
 
 @pytest.fixture
 def driver(request):
-    browser = webdriver.Chrome()
+    browser = webdriver.Firefox()
     browser.implicitly_wait(2)
     request.addfinalizer(browser.quit)
     return browser
@@ -26,10 +26,10 @@ def test_task11(driver):
     driver.find_element_by_name("address2").send_keys("address2")
     driver.find_element_by_name("postcode").send_keys(52382)
     driver.find_element_by_name("city").send_keys("City")
-    select_country = Select(driver.find_element_by_name("country_code"))
-    select_country.select_by_value("US")
-    select_zone = Select(driver.find_element_by_css_selector("select[name=zone_code]"))
-    select_zone.select_by_value("AS")
+    driver.find_element_by_css_selector(".select2-selection__rendered").click()
+    driver.find_element_by_css_selector(".select2-results__option[id $= US]").click()
+    time.sleep(1)
+    Select(driver.find_element_by_css_selector("select[name=zone_code]")).select_by_value("AF")
     now = datetime.datetime.now()
     email = "new" + now.strftime('%d%H%M%S') + "@mail.ru"
     driver.find_element_by_name("email").send_keys(email)

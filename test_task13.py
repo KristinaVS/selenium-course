@@ -31,6 +31,9 @@ def test_task13(driver):
     count_row = len(driver.find_elements_by_css_selector("#order_confirmation-wrapper tr"))
     count_product = len(driver.find_elements_by_name("remove_cart_item"))
     for i in range(count_product):
+        count_product = driver.find_elements_by_css_selector(".shortcuts>.shortcut>a")
+        if len(count_product) > 0:
+            count_product[0].click()
         driver.find_element_by_name("remove_cart_item").click()
         if len(driver.find_elements_by_css_selector("#checkout-cart-wrapper em")) != 0:
             break
